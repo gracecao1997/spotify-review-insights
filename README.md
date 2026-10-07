@@ -1,8 +1,8 @@
 # Spotify review insight pipeline
 
-This project turns historical Spotify app reviews into a reproducible product-priority analysis. The final route uses Jev for fixed classification and independent verification, SQLite/code for state and arithmetic, and local Ollama for bounded issue naming and memo writing. The real Jev cold/warm pilot, 500-review checkpoint, human/model comparison and initial public dashboard are complete. The 10,000-review checkpoint is running; the final 100,000-review analysis is not yet complete.
+This project turns historical Spotify app reviews into a reproducible product-priority analysis. The final route uses Jev for fixed classification and independent verification, SQLite/code for state and arithmetic, and local Ollama for bounded issue naming and memo writing. The approved analysis is complete: 100,000 nonempty reviews classified and 13 empty texts quarantined. Coverage, ranking and provenance checks have no flags; unavailable provider usage on failed requests is disclosed in `evidence/audit-disclosure.json`. The published backend retrieves the final processed data, rankings and memo from a deployed read-only SQLite database.
 
-Live dashboard: https://spotify-review-insights-three.vercel.app (currently the clearly labeled 500-review checkpoint).
+Live dashboard: https://spotify-review-insights-three.vercel.app (final approved analysis).
 
 ## Scope and current evidence
 
@@ -108,3 +108,12 @@ flowchart LR
 ```
 
 The UI never calls a model. It retrieves saved records, calculated rankings and recommendations from the deployed database through the backend. The deployment uses the existing Vercel Hobby plan. The local runner's `runs/` state remains the recovery source of truth.
+
+## Final measured result
+
+- Classified: 100,000; empty quarantines: 13; pending: 0. Original full source: 660,622 rows, profiled separately.
+- Project-wide known API cost: $4.091135; unresolved/in-flight reservations: $0.151388. These are usage-based costs and conservative reservations, not a provider invoice.
+- Local hardware/energy costs remain unmeasured. The API authorization was $10, with a $9 dispatch stop.
+- Final machine-checkable audit: `evidence/final-self-check.json`. This validates artifacts, not semantic truth or a final grade.
+- Final decision memo: `evidence/final-memo.md`; human/model comparison: `evidence/golden_evaluation.json`.
+- Download input sample, grading artifacts, recovery evidence, costs and final outputs from the [final-analysis release](https://github.com/gracecao1997/spotify-review-insights/releases/tag/final-analysis).

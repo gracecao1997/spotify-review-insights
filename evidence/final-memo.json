@@ -1,0 +1,12 @@
+{
+  "priority_issue_id": "issue-usability",
+  "recommendation": "Investigate reported usability issues affecting user experience",
+  "rationale": "Highest baseline priority based on computed severity aggregation across historical reviews",
+  "alternatives": "Other issues show similar severity patterns but lower priority in computed order",
+  "limitations": "Self-selected historical reviews; model uncertainty in severity interpretation; primary-topic grouping",
+  "review_ids": [
+    "117770a7-cec9-4bc3-8a9f-a5d6f3544b5d",
+    "1b72a43a-0608-4b73-991a-b9fbe84a5ebc",
+    "1e4d3214-63de-4ba0-9870-a4ee8aa32942"
+  ]
+}

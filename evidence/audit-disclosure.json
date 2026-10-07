@@ -1,0 +1,95 @@
+{
+  "accepted_for_publication": true,
+  "course_audit_status": "review_required",
+  "disclosure": "Course audit unchanged. Coverage, ranking and provenance checks have no flags. Provider usage is unavailable for the listed failed calls; unknown charges remain reserved, not treated as zero.",
+  "failed_calls_with_unavailable_usage": [
+    {
+      "request_id": "c5ddce4a-f6a7-419b-b555-f876db7b58d8",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe HTTP 520"
+    },
+    {
+      "request_id": "e047249f-a6d6-433c-a8ba-d9698c869352",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe HTTP 520"
+    },
+    {
+      "request_id": "dafb4657-211b-4299-bfb2-35220c7fe596",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe HTTP 520"
+    },
+    {
+      "request_id": "dac3837b-ad19-429e-ba1b-0b6137789300",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe network error; usage/charge unknown"
+    },
+    {
+      "request_id": "590bd461-85c2-42b5-beb8-127ab0f792b1",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe network error; usage/charge unknown"
+    },
+    {
+      "request_id": "e6520216-41f9-4e9b-9d6b-b243c42d4e1b",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe network error; usage/charge unknown"
+    },
+    {
+      "request_id": "6b68afcc-7a21-4aac-8116-f94b5b31c56a",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "The read operation timed out"
+    },
+    {
+      "request_id": "8fcf759a-40cd-4e89-a179-0630c1170444",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe network error; usage/charge unknown"
+    },
+    {
+      "request_id": "d1a737f3-e392-47d3-8077-27e24f5546d5",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe network error; usage/charge unknown"
+    },
+    {
+      "request_id": "32e25bfb-ad69-4926-9538-602e5d3630a7",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe network error; usage/charge unknown"
+    },
+    {
+      "request_id": "9d09413d-3bc4-4c6d-b656-7a7ca06b45c3",
+      "missing_fields": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "error": "TypeSafe network error; usage/charge unknown"
+    }
+  ]
+}

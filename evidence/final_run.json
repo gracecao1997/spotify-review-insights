@@ -1,0 +1,40 @@
+{
+  "scope": "100000 nonempty plus 13 empty; original full source profiled separately",
+  "classification": {
+    "run_id": "a47dabec-dce6-4977-8ac3-7f751a1e9585",
+    "label_config": "2ee759392ec7b1a095fda896b2c13410ba8a9e9a2c33a4a3525827efd8bed2f2",
+    "input_count": 100013,
+    "completed": 100000,
+    "quarantined": 13,
+    "pending": 0,
+    "new_enrichment_calls": 54046,
+    "cache_or_saved_hits": 44383,
+    "workers": 2,
+    "wall_seconds": 5086.482644207892,
+    "interrupted": false,
+    "stop_reasons": [],
+    "project_budget": {
+      "known_api_usd": 4.039742196,
+      "reserved_or_unknown_usd": 0.15138816,
+      "authorized_cap_usd": 10,
+      "dispatch_stop_usd": 9,
+      "states": {
+        "settled": 78226,
+        "unknown": 11
+      }
+    }
+  },
+  "project_budget": {
+    "known_api_usd": 4.09113537,
+    "reserved_or_unknown_usd": 0.15138816,
+    "authorized_cap_usd": 10,
+    "dispatch_stop_usd": 9,
+    "states": {
+      "settled": 79129,
+      "unknown": 11
+    }
+  },
+  "audit_status": "review_required",
+  "audit_accepted": true,
+  "dashboard_url": "https://spotify-review-insights-three.vercel.app"
+}
