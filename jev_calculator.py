@@ -13,9 +13,11 @@ def calculate(base,rates_path,nonempty=100000,distinct=78099,verify_fraction=.01
     base=Path(base)
     if not 0<distinct<=nonempty:raise ValueError('Distinct count must be within the nonempty count')
     with Path(rates_path).open(newline='') as f:rates={r['model']:r for r in csv.DictReader(f)}
-    cold=json.loads((base/'cold/experiment.json').read_text());warm=json.loads((base/'warm/experiment.json').read_text())
-    cold_calls={r['request_id']:r for r in load_records(base/'cold/all_calls.jsonl')}
-    all_calls={r['request_id']:r for r in load_records(base/'warm/all_calls.jsonl')}
+    exported=(base/'cold_experiment.json').exists()
+    cold=json.loads((base/('cold_experiment.json' if exported else 'cold/experiment.json')).read_text())
+    warm=json.loads((base/('warm_experiment.json' if exported else 'warm/experiment.json')).read_text())
+    cold_calls={r['request_id']:r for r in load_records(base/('cold_calls.jsonl' if exported else 'cold/all_calls.jsonl'))}
+    all_calls={r['request_id']:r for r in load_records(base/('pilot_calls.jsonl' if exported else 'warm/all_calls.jsonl'))}
     all_calls.update(cold_calls)
     totals={'cold':defaultdict(lambda:{'calls':0,'input_tokens':0,'output_tokens':0,'api_usd':0.,'unknown_usage_calls':0,'call_wall_seconds':0.}),
             'warm':defaultdict(lambda:{'calls':0,'input_tokens':0,'output_tokens':0,'api_usd':0.,'unknown_usage_calls':0,'call_wall_seconds':0.})}
@@ -29,7 +31,7 @@ def calculate(base,rates_path,nonempty=100000,distinct=78099,verify_fraction=.01
         r['unknown_usage_calls']+=int(unknown);r['call_wall_seconds']+=c.get('wall_seconds',0)
         usage.append({'request_id':rid,'phase':phase,'role':c['role'],'model':c['model'],'input_tokens':inp,'output_tokens':out,
                       'api_usd':cost if not unknown else '', 'usage_unknown':unknown,'outcome':c['outcome']})
-    records=load_records(base/'cold/records.jsonl');completed=[r for r in records if r['status']=='completed']
+    records=load_records(base/('pilot_records.jsonl' if exported else 'cold/records.jsonl'));completed=[r for r in records if r['status']=='completed']
     unique=len({r['source']['review_text'] for r in completed});sample=cold['stages']['timings'].get('verify',[])
     nverify=len(sample)
     if not unique or not nverify:raise ValueError('Pilot must include completed enrichment and independent verification')
@@ -61,7 +63,7 @@ def calculate(base,rates_path,nonempty=100000,distinct=78099,verify_fraction=.01
     return report,usage
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--pilot',default='runs/jev-pilot');p.add_argument('--rates',default='cost/jev_rates.csv')
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--pilot',default='cost/jev');p.add_argument('--rates',default='cost/jev_rates.csv')
     p.add_argument('--nonempty',type=int,default=100000);p.add_argument('--distinct',type=int,default=78099);p.add_argument('--out',default='cost/jev')
     a=p.parse_args();report,usage=calculate(a.pilot,a.rates,a.nonempty,a.distinct);out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
     write_json(out/'report.json',report);write_csv(out/'usage.csv',list(usage[0]),usage)
