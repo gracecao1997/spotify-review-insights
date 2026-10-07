@@ -1,0 +1,24 @@
+test_editable_rates_scale_only_cost (test_calculator.CalculatorTests.test_editable_rates_scale_only_cost) ... ok
+test_nonzero_rates_and_projection_do_not_change_measurements (test_jev.CalculatorTests.test_nonzero_rates_and_projection_do_not_change_measurements) ... ok
+test_actual_usage_and_unknown_timeout (test_jev.JevTests.test_actual_usage_and_unknown_timeout) ... ok
+test_decoder_rejects_wrong_model_fractional_severity (test_jev.JevTests.test_decoder_rejects_wrong_model_fractional_severity) ... ok
+test_retry_exact_cache_and_resume_without_new_calls (test_jev.JevTests.test_retry_exact_cache_and_resume_without_new_calls) ... ok
+test_shared_budget_atomic_and_persists_unknown (test_jev.JevTests.test_shared_budget_atomic_and_persists_unknown) ... ok
+test_reopen_network_failure_preserves_attempts_and_reservations (test_jev.TransportRecoveryTests.test_reopen_network_failure_preserves_attempts_and_reservations) ... ok
+test_fallback_requires_explicit_assumptions (test_jev_calculator.JevCalculatorAcceptance.test_fallback_requires_explicit_assumptions) ... ok
+test_rates_volume_and_budget_are_independent_of_measurements (test_jev_calculator.JevCalculatorAcceptance.test_rates_volume_and_budget_are_independent_of_measurements) ... ok
+test_saved_label_roundtrip_and_invalid_quote_rejection (test_label_server.LabelServerTests.test_saved_label_roundtrip_and_invalid_quote_rejection) ... 127.0.0.1 - - [06/Oct/2026 23:06:24] "POST /api/labels HTTP/1.1" 200 -
+127.0.0.1 - - [06/Oct/2026 23:06:24] "GET /api/labels HTTP/1.1" 200 -
+127.0.0.1 - - [06/Oct/2026 23:06:24] "POST /api/labels HTTP/1.1" 400 -
+127.0.0.1 - - [06/Oct/2026 23:06:24] "GET /download HTTP/1.1" 200 -
+ok
+test_deterministic_evidence_preserves_exact_case (test_pipeline.PipelineTests.test_deterministic_evidence_preserves_exact_case) ... ok
+test_multiline_and_empty_text_preserved (test_pipeline.PipelineTests.test_multiline_and_empty_text_preserved) ... ok
+test_ranking_ignores_praise_and_breaks_ties (test_pipeline.PipelineTests.test_ranking_ignores_praise_and_breaks_ties) ... ok
+test_source_hash_matches_supplied_checker (test_pipeline.PipelineTests.test_source_hash_matches_supplied_checker) ... ok
+test_validation_rejects_hallucination_and_bool_severity (test_pipeline.PipelineTests.test_validation_rejects_hallucination_and_bool_severity) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 4.264s
+
+OK

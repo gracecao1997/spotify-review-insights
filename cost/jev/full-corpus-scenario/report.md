@@ -11,9 +11,9 @@ Pilot: 100 / 100 completed.
 
 | Scenario | Projected API USD | Projected one-worker hours |
 |---|---:|---:|
-| base_exact_cache | 4.0849 | 3.59 |
-| conservative_20_percent_extra | 4.9019 | 4.30 |
-| no_result_reuse | 5.2144 | 4.57 |
+| base_exact_cache | 25.3485 | 22.21 |
+| conservative_20_percent_extra | 30.4182 | 26.64 |
+| no_result_reuse | 34.4466 | 30.16 |
 
 ## Measured per-stage usage
 
@@ -40,7 +40,7 @@ Cost per 1,000 inputs: $0.057301440; per completed record: $0.000057301; through
   "scope": "Calculator planning controls; does not mutate execution settings. Actual paid run uses ledger and saved experiment controls."
 }
 
-Scenario budget warnings: {"base_exact_cache": false, "conservative_20_percent_extra": false, "no_result_reuse": false}
+Scenario budget warnings: {"base_exact_cache": true, "conservative_20_percent_extra": true, "no_result_reuse": true}
 
 - Worker/output settings describe scenario limits; no measured speedup or token-saving claim is made. Paid fallback is disabled in the executed pipeline.
 - Measured pilot retries are included; conservative scenario adds another 20%.

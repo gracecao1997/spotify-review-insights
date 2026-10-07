@@ -85,3 +85,24 @@ Seven human needs-review cases remain in the main denominator. The separate diag
 - Exact entity-set agreement is sensitive to the fixed extraction glossary and to how many terms the human selected. Exact copying does not establish relevance or complete recall.
 - Sentiment uses a continuous model score and five human categories. The predeclared ±0.5 agreement is reported alongside mean absolute error.
 - Do not edit human labels to match the model. Review disagreements as limitations; any post-evaluation prompt tuning would require fresh held-out evaluation.
+
+## Post-run semantic inspection (AI-assisted, not new human labels)
+
+These are diagnostic interpretations of the original saved cases. Neither expected labels, predictions, prompts nor scores were changed; this review did not tune the classifier. Confidence describes the interpretation, not a new gold-standard adjudication.
+
+| Review ID | Diagnosis against the shared rubric | Handling / confidence |
+|---|---|---|
+| 292ce26a-815d-4bce-a3b6-93cb6c9e7e2c | Human severity 5 versus model 2. The text criticizes content removal but does not report explicit serious financial, privacy or data harm. Strong language alone does not justify 5. | Likely human severity overstatement; keep both original labels. High confidence that 5 lacks rubric support. |
+| 47f1406d-4918-4d60-9647-5ca8e610caca | Human severity 2 versus model 4. “cannot playback the songs” supports a blocked core task, beyond generic annoyance. | Model interpretation better supported; no score adjustment. Moderate confidence because the extent of failure is not fully described. |
+| 3ddb3f4e-f7b9-430b-b335-eadc6d321f46 | Both human and model chose usability, yet the review explicitly links restricted controls to upgrading to Premium. The contract puts explicitly premium-only controls under billing. | A shared error can be hidden by agreement. Candidate billing boundary failure; preserve outputs. Moderate confidence. |
+| 723f07de-9881-4049-8680-1a9e25652914 | The human quote selects a new update saying support resolved the problem; the model's full-text quote includes an older report of repeated crashes. This explains support/unclear/1 versus playback/complaint/4. | Temporal contradiction; the model's needs_review=false deserves scrutiny. Do not infer the historical crash is still active. High confidence that the text contains conflicting time states. |
+| dceb14e7-2df0-422f-bb2b-73d7c373159a | Human usability versus model playback. Inability to choose or rewind songs can describe controls, rather than a playback engine failure. | Likely model boundary ambiguity; model already flagged needs_review. Moderate confidence. |
+| ac4e860a-c042-49cc-90f3-189591c336ac | Offline-mode failure belongs under downloads. A paid subscription mention alone does not make it billing; a reported failure takes intent precedence over a request. Severity 3 versus 4 depends on whether the task is fully blocked. | Model topic/intent better follow the contract; severity remains ambiguous. High confidence on topic, moderate on severity. |
+| ac6cd66d-a9d2-42a4-afb8-2f84beff7fd1 | Human marked unfamiliar/uncertain language and supplied placeholder labels; the model also flagged needs_review. | Retain in the denominator; do not treat a placeholder as independently verified meaning. A qualified language reader would be needed for definitive adjudication. |
+| 283b5843-a992-464f-b1dc-9dc7281ff390 | Incoherent money-related wording led the model to billing despite unclear intent. A monetary token alone may not establish a billing issue. | Likely model over-specific topic; needs_review=true retained. Moderate confidence. |
+
+Quotes are all exact source substrings, but the resolved-versus-old complaint case shows why substring validation is insufficient. The glossary returns only literal substrings (for example, “Premium” and “shuffle”), so it avoids invented entity spelling but can miss synonyms, other languages and relevance. In the “Nice app, very less advertising” case it returns no entities: the glossary is incomplete even though its empty set matches the human annotation. Exact entity-set agreement of 50% is therefore not entity precision or recall.
+
+## Independent verifier disagreement inspection
+
+Review `ab139d82-7d75-412c-bc41-8d3b2fc820b3` praises compatibility and ease of use. Enrichment selected other; the blind verifier selected usability. A specific praised feature should take precedence over generic praise, so usability is better supported (moderate confidence). No production label was replaced. Review `c4040b0d-2804-42e2-9125-e2b5eda03cce` mixes praise for listening with repeated ads; both tasks choose usability/complaint/severity 2. Its complete source → verifier → membership → memo-calculation chain is saved in `verified_source_trace.json`. This agreement does not remove the shared-model bias limitation.

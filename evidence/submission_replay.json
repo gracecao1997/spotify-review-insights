@@ -1,0 +1,52 @@
+{
+  "clean_directory": "/var/folders/qv/0vwstn71257c43qz6w5fhtph0000gn/T/spotify-clean-audit-onkja5ta",
+  "no_credentials_or_model_runtime_required": true,
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "jev_calculator.py",
+        "--out",
+        "runs/replayed-cost"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python3",
+        "verify_saved.py",
+        "--out",
+        "runs/replayed-ranking"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python3",
+        "course/check_submission.py",
+        "check",
+        "--reference",
+        "runs/reference-final.json",
+        "--submission",
+        "grading",
+        "--out",
+        "runs/replayed-audit.json"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "ranking": {
+    "records": 100013,
+    "members": 45733,
+    "issues": 8,
+    "claims_checked": 24,
+    "ranking_matches": true,
+    "model_calls": 0
+  },
+  "audit_status": "review_required",
+  "audit_issue_counts": {
+    "invalid_usage": 22
+  },
+  "reconstructed_database_rows": 100013,
+  "note": "Expected unavailable-usage flags retained; not an unqualified checker pass. No model client called by these replay commands."
+}

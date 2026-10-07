@@ -4,15 +4,17 @@ This project turns historical Spotify app reviews into a reproducible product-pr
 
 Live dashboard: https://spotify-review-insights-three.vercel.app (final approved analysis).
 
+See the [final rubric and classroom review](SUBMISSION_AUDIT.md) for resolved gaps and remaining limitations.
+
 ## Scope and current evidence
 
-The student reports that the professor approved **100,000 nonempty reviews** and an API budget no higher than **$10**. `data/analysis_100000.csv` contains 100,000 deterministically selected nonempty rows plus the 13 empty rows, with 78,099 distinct nonempty texts. Selection preserves every original field, includes the fixed checkpoints and golden raw texts, and is documented in `evidence/analysis_scope.json`. This is a reduced analysis scope, not full-corpus classification. The entire 660,622-row source was profiled separately in `evidence/ingestion.json`.
+The October 6 classroom clarification, supplied by the student, explicitly permits **at least 100,000 reviews** and recommends keeping API costs within **$10**. The assignment document also permits 100,000 in its submission requirements and definition of done; some later paragraphs retain the original full-corpus wording. We classify 100,000 nonempty reviews and preserve all 13 empty records. The private classroom transcript is not republished. `data/analysis_100000.csv` contains 100,000 deterministically selected nonempty rows plus the 13 empty rows, with 78,099 distinct nonempty texts. Selection preserves every original field, includes the fixed checkpoints and golden raw texts, and is documented in `evidence/analysis_scope.json`. This is a reduced analysis scope, not full-corpus classification. The entire 660,622-row source was profiled separately in `evidence/ingestion.json`.
 
 **Human labeling is complete:** 50/50 valid records, including 7 needs-review flags. See `evidence/golden_completion.json` and `evidence/golden_50_human.csv`. Human answers never enter prompts. An immutable timestamped backup preserves the original labels. Held-out agreement: topic 78%, intent 82%, severity 72%; severity MAE 0.38. The real 100-review pipeline took 53.95 seconds and $0.005730144 in known API charges; warm replay took 0.149 seconds with no new model calls. See `cost/jev/report.md`.
 
 ## Setup and execution
 
-Use Python 3.11+ and local Ollama with `gemma3n:e4b-it-q4_K_M`. Python code uses the standard library. Create a TypeSafe API key at https://console.typesafe.ai/keys and save it only in the ignored project `.env` as `TYPESAFE_API_KEY=...`. Never include it in logs, screenshots or submissions. The blank `.env.example` is safe to commit.
+Use Python 3.11+ (standard library for the pipeline). Only the deployed Flask backend adds a dependency, pinned in [deployment/requirements.txt](deployment/requirements.txt). For new model execution, install Ollama and pull `gemma3n:e4b-it-q4_K_M` for the original pilot, or `qwen3:4b` for the final grouping/memo route. Exact local model digests, temperature 0, context 8,192 and output cap 2,200 are saved in the release experiments. Jev enrichment/verification uses pinned `jev-1.13.0`; the final memo uses Qwen, not the pilot Gemma model. Offline checks need neither Ollama nor any key. Create a TypeSafe API key at https://console.typesafe.ai/keys and save it only in the ignored project `.env` as `TYPESAFE_API_KEY=...`. Never include it in logs, screenshots or submissions. The blank `.env.example` is safe to commit.
 
 The following are separate commands, not an automatic instruction to run every checkpoint before inspecting results:
 
@@ -30,7 +32,7 @@ python3 recovery_demo.py --provider jev --execute-paid --input data/checkpoint_5
 python3 jev_pipeline.py --execute-paid --resume --input data/checkpoint_500.csv --root runs/jev-500
 # After inspecting quality, costs and runtime, expand using one shared state DB.
 python3 jev_pipeline.py --execute-paid --resume --input data/analysis_10000.csv --root runs/jev-500
-python3 jev_pipeline.py --execute-paid --resume --input data/analysis_100000.csv --root runs/jev-500
+python3 jev_pipeline.py --execute-paid --resume --input data/analysis_100000.csv --root runs/jev-500 --model qwen3:4b --workers 2
 # Final evaluation does not call a model.
 python3 evaluate.py --predictions runs/jev-500/resume/records.jsonl
 # Deterministic ranking, also offline.
@@ -71,11 +73,12 @@ Severity examples (synthetic, not golden cases): “Love it” → 1; “Bad app
 - `tests/`: source fidelity, validation and ranking checks.
 - `evidence/system-tests/`: planted-label and injection tests, isolated from business records.
 
-Large generated files live outside source control until packaged as downloadable evidence. Before submission, package the required `grading/` and `cost/` artifacts, add an interruption/resume recording, finish human/model evaluation, run the approved 100,000-review scope, deploy the dashboard/backend/database, and verify public access. The 500-review checkpoint is a classroom milestone, not the final deliverable. No analysis should claim observed churn, revenue at risk, causality or representativeness from these self-selected historical reviews.
+The final artifacts are packaged in the [downloadable evidence ZIP](https://github.com/gracecao1997/spotify-review-insights/releases/download/final-analysis/spotify-assignment-evidence.zip). Source code and evaluation files are also directly readable in this repository. Historical `runs/benchmark*` experiments are local development history, not required evidence links; the submitted Jev pilot is fully preserved under `cost/jev/`. The 500-review checkpoint is a classroom milestone. No analysis claims observed churn, revenue at risk, causality or population representativeness.
 
 ## Sources and technical references
 
 - Course-supplied `course/GRADING_CONTRACT.md`, `course/COST_CALCULATOR.md`, `course/manifest.json` and checker define the required outputs.
+- Instructor-supplied course ZIP: https://drive.google.com/file/d/1P0rUoAS_wVjp3BYKqXMEyD4u0uJP1Bvf/view (course access may be required; the public release includes the selected input).
 - Original data: https://www.kaggle.com/datasets/bwandowando/3-4-million-spotify-google-store-reviews (version 2).
 - Full course CSV SHA-256: `1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6`.
 - Structured output reference: https://github.com/ollama/ollama/blob/main/docs/capabilities/structured-outputs.mdx
@@ -85,11 +88,18 @@ Reference choices are assessed against measured throughput, quality and cost. Pr
 
 ## Rubric evidence map
 
-| Criterion | Inspectable evidence |
+| Rubric criterion | Evidence / outcome |
 |---|---|
-| Deliverable quality | This README, source code, `course/GRADING_CONTRACT.md`, versioned settings/call logs, stage memo and claims |
-| Testing and evaluation | `evidence/golden_evaluation.json`, `evidence/golden_error_analysis.md`, `evidence/jev-system-tests/report.json`, `cost/jev/`, interruption recording in run evidence |
-| Working result | `evidence/ingestion.json`, `evidence/analysis_scope.json`, `evidence/jev-500-self-check.json`, saved classifications/ranking and live dashboard |
+| D1 Accessible code/setup/artifacts | Setup below, [release](https://github.com/gracecao1997/spotify-review-insights/releases/tag/final-analysis), [deployment](DEPLOYMENT.md), [clean offline replay report](evidence/submission_replay.json) |
+| D2 Architecture/schema/provenance | Diagram and stage contract below; [shared schema](course/GRADING_CONTRACT.md), [verified source trace](evidence/verified_source_trace.json); saved model requests and hashes in `grading/calls.jsonl` |
+| D3 Memo arithmetic/source evidence | [24 checked claims](evidence/final-claims.csv), [model memo](evidence/final-memo.md), [source trace](evidence/source_trace.json), `python3 verify_saved.py` |
+| D4 Recommendation/alternatives/limits | [Reviewed decision memo](DECISION_MEMO.md), explicitly separate from the logged model output |
+| T1 Human evaluation and errors | [50 human labels](evidence/golden_50_human.csv), [all comparisons](evidence/golden_evaluation.json), [semantic error inspection](evidence/golden_error_analysis.md) |
+| T2 Blind verifier and adversarial tests | [1,000-record verifier](evidence/final-verification.json), [actual synthetic tests](evidence/jev-system-tests/report.json), error inspection |
+| T3 Real pilot/calculator/controls | [cold/warm report](cost/jev/report.md), [offline instructions](cost/jev/README.md), [rates](cost/jev_rates.csv), [control tests](tests/test_jev.py), recovery recording and checkpoints in release |
+| W1 Ingestion and approved coverage | [full ingestion](evidence/ingestion.json), [scope](evidence/analysis_scope.json), [final audit](evidence/final-self-check.json): 100,000 classified, 13 empty quarantines |
+| W2 Runnable staged program/resume | [orchestrator](jev_pipeline.py), 138 → 500 recovery with no relabelled completed IDs, saved role inputs/outputs in release |
+| W3 Ranking and deployed result | [offline reranker](verify_saved.py), [live dashboard](https://spotify-review-insights-three.vercel.app), [SQLite-backed API](deployment/app.py), linked recommendation metrics |
 
 The 500-review mechanical audit passes against the supplied 500-review reference. This does not establish final coverage or a final grade. The actual recovery retained 138 completed IDs and added 362, with no reclassification of already completed IDs.
 
@@ -122,7 +132,7 @@ The UI never calls a model. It retrieves saved records, calculated rankings and 
 
 Submit this repository URL through the course's bCourses assignment portal: **https://github.com/gracecao1997/spotify-review-insights**. Portal submission has not been performed by this program.
 
-Read the [reviewed decision memo](DECISION_MEMO.md) for the recommendation, alternatives and limitations. The untouched model-generated memo and its logged handoff are separate. `evidence/source_trace.json` follows one original review through classification, issue membership, ranking and memo claim IDs.
+Read the [reviewed decision memo](DECISION_MEMO.md) for the recommendation, alternatives and limitations. The untouched model-generated memo and its logged handoff are separate. [Verified source trace](evidence/verified_source_trace.json) follows one original review through source, enrichment, blind verification, saved membership, ranking and memo claim IDs. [Source trace](evidence/source_trace.json) separately traces a model-selected memo quotation.
 
 For a new model run, extract the instructor-provided `spotify-insight-dataset.zip` into `data/` with `python3 -m zipfile -e /path/to/spotify-insight-dataset.zip data`, then run `python3 prepare_scope.py`. The raw ZIP is not needed for offline cost replay. The release contains the exact selected analysis CSV and grading artifacts for inspection.
 
@@ -131,3 +141,62 @@ The final call log includes 11 failed requests with unavailable token counts; th
 The final 1,000-record independent verification sample contains 16 topic, 11 intent and 25 severity disagreements. Continuous sentiment differences and needs-review differences are retained in the detailed report; same-model agreement is not independent proof of correctness.
 
 `evidence/final_run.json` records the final resumed segment's measured classification time, not uninterrupted end-to-end time. The work was paused by network failures; interruption and per-call timing records are retained. Local model compute costs are unmeasured.
+
+## Clean offline replay (no credentials or model server)
+
+Clone this public repository, download the release ZIP, and extract it at the repository root. The following commands require only Python; downloading the ZIP is a separate browser/download step.
+
+```sh
+python3 -m zipfile -e /path/to/spotify-assignment-evidence.zip .
+python3 jev_calculator.py --out runs/replayed-cost
+python3 verify_saved.py --grading grading --out runs/replayed-ranking
+python3 course/check_submission.py check --reference runs/reference-final.json --submission grading --out runs/replayed-audit.json
+```
+
+The saved reference is included for convenience. To independently rebuild it from original source, extract the course ZIP into `data/` and run `python3 course/check_submission.py reference --full data/spotify_reviews_18months.csv --analysis data/analysis_100000.csv --out runs/rebuilt-reference.json`. The unchanged checker reports `review_required` only for unknown usage on failed requests; the disclosure must accompany it.
+
+Recreate the database and preview without paid calls:
+
+```sh
+mkdir -p runs/replay
+cp grading/records.jsonl runs/replay/records.jsonl
+cp runs/jev-500/resume/memo.json runs/replay/memo.json
+python3 dashboard.py --import-run runs/replay --db runs/replay/dashboard.sqlite
+python3 dashboard.py --db runs/replay/dashboard.sqlite --serve
+# Opens a local service at http://127.0.0.1:8770; Ctrl-C stops it.
+```
+
+The published dashboard requires no login. Its `/api/health` endpoint reports the stored row count; `/api/summary` retrieves saved metrics and recommendations. The backend uses the packaged persistent SQLite snapshot in read-only mode. No API credentials are deployed.
+
+## Stage contracts and failure paths
+
+| Stage / owner | Input → saved output | Stop / retry behavior |
+|---|---|---|
+| Prepare / code | Original CSV → source hashes, SQLite IDs, ingestion/profile | Malformed CSV or duplicate IDs stop ingestion; empty texts quarantine |
+| Enrich / Jev + validator | Original text and frozen definitions → validated record/call log | At most two attempts; transactional save; spend/time/network stop leaves resumable state |
+| Verify / separate blind Jev task | Seeded original texts, no prior prediction → independent labels/disagreements | At most two attempts; preserve failed requests and unknown reservations; no label overwriting |
+| Group / code + local naming role | Complaint/cancellation records, bounded non-golden examples → membership/names | Code fixes membership; invalid names retry once and then stop |
+| Rank / code | Saved records/membership → counts, severity sums, claims | Deterministic replay; mismatch fails validation; no model calls |
+| Recommend / local model + code | Computed priority order and bounded evidence → narrative plus checked numeric table | Validate issue/review IDs and prohibit free-form numeric claims; invalid output retries once then stops |
+| Publish / backend | Saved result artifacts → SQLite → Flask API → dashboard | Read-only serving; missing database/request failures are visible; no model calls |
+
+```mermaid
+flowchart TD
+  A[CSV and source hashes] --> B[Code checks pending IDs and exact cache]
+  B --> C[Jev classification role]
+  C --> D{Schema and source validation}
+  D -->|valid| E[(Atomic SQLite checkpoint)]
+  D -->|invalid and first attempt| C
+  D -->|second invalid attempt| Q[Explicit quarantine]
+  B -->|budget or time or network stop| S[Save state and stop]
+  S -->|explicit resume: pending only| B
+  E --> V[Blind verifier role: original texts only]
+  E --> G[Code membership and bounded model naming]
+  G --> R[Code ranking and numeric claims]
+  R --> M[Memo role and reference validation]
+  M --> P[(Published SQLite snapshot)]
+  P --> API[Flask API]
+  API --> UI[Dashboard metrics and cited evidence]
+```
+
+The final successful resumed pipeline segment took **5,280.950 seconds**, including **5,086.483 seconds** of classification and **187.675 seconds** of downstream stages. It reused earlier work; these times are not a cold 100k benchmark or the total elapsed project duration. All recorded attempts remain in call logs. A single uninterrupted full-project wall-clock measurement was not collected.

@@ -1,0 +1,10 @@
+{
+  "prepared_at": "post-run submission audit",
+  "retrospective_not_claimed_as_original_pre_scale_gate": true,
+  "checkpoint_rows": 500,
+  "distinct_nonempty": 479,
+  "enrichment_known_api_usd": 0.024695579999999998,
+  "projection_100k_enrichment_only_usd": 4.026513783757828,
+  "formula": "known saved enrichment spend / distinct checkpoint texts * 78099",
+  "limitation": "Excludes verification/fixed stages/retry margin. Original 100-review projection and 10k budget gate are separately retained. No contemporaneous standalone 500-review projection file was retained."
+}

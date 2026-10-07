@@ -1,0 +1,78 @@
+{
+  "review": {
+    "entities": [
+      "music",
+      "ads"
+    ],
+    "evidence_quote": "i absolutly love listening to music on here, but the only thing i dont like is there are multiple ads playing after another",
+    "intent": "complaint",
+    "label_config": "2ee759392ec7b1a095fda896b2c13410ba8a9e9a2c33a4a3525827efd8bed2f2",
+    "needs_review": true,
+    "review_id": "c4040b0d-2804-42e2-9125-e2b5eda03cce",
+    "sentiment": 0.25,
+    "severity": 2,
+    "source": {
+      "app_version": "8.8.16.615",
+      "review_id": "c4040b0d-2804-42e2-9125-e2b5eda03cce",
+      "review_likes": "0",
+      "review_rating": "4",
+      "review_text": "i absolutly love listening to music on here, but the only thing i dont like is there are multiple ads playing after another",
+      "review_timestamp": "2023-03-12 20:00:26"
+    },
+    "source_sha256": "2850c4a0a23c7edf95b6a305701e5d1a54995690ba489ca348f4a6cd85b7def6",
+    "status": "completed",
+    "topic": "usability"
+  },
+  "blind_verification": {
+    "review_id": "c4040b0d-2804-42e2-9125-e2b5eda03cce",
+    "prediction": {
+      "topic": "usability",
+      "intent": "complaint",
+      "sentiment": 0.25,
+      "severity": 2,
+      "entities": [
+        "music",
+        "ads"
+      ],
+      "evidence_quote": "i absolutly love listening to music on here, but the only thing i dont like is there are multiple ads playing after another",
+      "needs_review": true
+    },
+    "disagreements": {}
+  },
+  "verification_seed": "verify-seed-v1",
+  "issue_id": "issue-usability",
+  "membership": {
+    "issue_id": "issue-usability",
+    "review_id": "c4040b0d-2804-42e2-9125-e2b5eda03cce"
+  },
+  "ranking": {
+    "rank": "1",
+    "issue_id": "issue-usability",
+    "complaint_count": "12350",
+    "severity_sum": "30007",
+    "mean_severity": "2.429717",
+    "priority_score": "30007"
+  },
+  "memo_claims": [
+    {
+      "claim_id": "C001",
+      "issue_id": "issue-usability",
+      "metric": "complaint_count",
+      "value": "12350"
+    },
+    {
+      "claim_id": "C002",
+      "issue_id": "issue-usability",
+      "metric": "priority_score",
+      "value": "30007"
+    },
+    {
+      "claim_id": "C003",
+      "issue_id": "issue-usability",
+      "metric": "mean_severity",
+      "value": "2.429717"
+    }
+  ],
+  "memo_reference": "evidence/final-memo.md",
+  "note": "This review contributes once to the issue-level memo claims; it is not claimed to be one of the three model-selected quotations. Labels and rankings were not changed."
+}
