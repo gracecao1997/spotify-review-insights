@@ -44,3 +44,11 @@ The assignment's `COST_CALCULATOR.md` explicitly recommends deterministic extrac
 The first Jev 10,000-review expansion stopped after 8,912 completed records, one network-failed quarantine and 1,087 pending records. Three consecutive transport failures triggered the circuit breaker; saved results were retained. HTTPS connectivity was subsequently confirmed without a paid request. The interrupted output folder was preserved before resume.
 
 Added an explicit `--retry-transport-quarantine` recovery option that reopens only quarantines caused by network errors or HTTP 5xx responses, preserving their prior payloads and every attempted call. Invalid model-output quarantines and empty rows are not reopened by this option. Unknown charges remain reserved in the shared budget ledger. Synthetic recovery tests verify preservation of attempts/reservations and completion on a later successful request. The resumed checkpoint reuses all completed classifications.
+
+## Completed 10,000 checkpoint and final expansion
+
+The resumed checkpoint completed all 10,000 rows without remaining quarantine or pending records. Blind verification of 100 sampled records found zero topic disagreements, one intent disagreement and six severity disagreements. Continuous sentiment differences are also recorded separately in the raw verification report; they should not be confused with categorical disagreements.
+
+The local memo writer initially predicted retention improvements, and a second local writer mixed up numerical counts and severity sums. Validation rejected these outputs; their logs remain preserved. The memo handoff was narrowed to the exact code-computed priority order and review examples, while code renders all counts, means, scores and claim IDs from saved aggregates. This follows the assignment's code/model separation and changes neither enrichment prompts nor human labels. The revised local Qwen memo passed validation and was inspected; it recommends investigating usability complaints without predicting business outcomes.
+
+The checkpoint projection with a 20% enrichment margin, verification allowance and unresolved reservations is approximately $5.07. The approved 100,000-nonempty review run was started using the existing state and shared spend ledger. The final analysis is not complete at this checkpoint.

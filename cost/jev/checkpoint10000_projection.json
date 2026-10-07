@@ -1,0 +1,16 @@
+{
+  "measured_unique_texts": 8448,
+  "measured_enrich_known_usd": 0.435913002,
+  "projected_final_api_usd_with_20_percent_margin": 5.068423306476988,
+  "project_budget": {
+    "known_api_usd": 0.445210584,
+    "reserved_or_unknown_usd": 0.08257536,
+    "authorized_cap_usd": 10,
+    "dispatch_stop_usd": 9,
+    "states": {
+      "settled": 8619,
+      "unknown": 6
+    }
+  },
+  "formula": "known enrichment cost / checkpoint distinct texts * 78099 * 1.2 + 0.15 verification allowance + unresolved reservations"
+}
