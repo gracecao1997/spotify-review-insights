@@ -12,7 +12,7 @@ def assess(audit_path,grading,out):
     for c in calls:
         absent=[k for k in ('input_tokens','output_tokens') if type(c.get(k)) is not int or c[k]<0]
         if absent:
-            if c.get('outcome')!='failed' or c.get('api_cost_usd') is not None or not any(s in c.get('error','') for s in ['network error','HTTP 5']):
+            if c.get('outcome')!='failed' or c.get('api_cost_usd') is not None or not any(s in c.get('error','') for s in ['network error','HTTP 5','The read operation timed out']):
                 raise ValueError('Unexplained missing usage; finalization stopped')
             unknown.append({'request_id':c['request_id'],'missing_fields':absent,'error':c.get('error')});missing+=len(absent)
     accepted=audit['status']=='pass' or (set(issues)=={'invalid_usage'} and issues['invalid_usage']==missing and bool(unknown))

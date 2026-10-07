@@ -68,7 +68,7 @@ def main(args):
         for folder in ['grading','cost/jev']:
             for f in (ROOT/folder).rglob('*'):
                 if f.is_file():z.write(f,f.relative_to(ROOT))
-        for f in ['data/analysis_100000.csv','runs/jev-500/recovery.cast','runs/jev-500/recovery_report.json','runs/jev-500/resume/memo.md','runs/jev-500/resume/memo.json','runs/jev-500/resume/verification.json','evidence/final_run.json','evidence/final-self-check.json']:
+        for f in ['data/analysis_100000.csv','runs/jev-500/recovery.cast','runs/jev-500/recovery_report.json','runs/jev-500/resume/memo.md','runs/jev-500/resume/memo.json','runs/jev-500/resume/verification.json','evidence/final_run.json','evidence/final-self-check.json','evidence/audit-disclosure.json','runs/jev-500/resume/experiment.json','runs/jev-500/resume/settings.json','runs/jev-500/resume/summary.json']:
             z.write(ROOT/f,f)
     # The analysis can finish without granting this process publishing authority.
     state('analysis_complete',report=report,archive=str(archive),publication_pending=True)

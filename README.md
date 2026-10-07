@@ -117,3 +117,17 @@ The UI never calls a model. It retrieves saved records, calculated rankings and 
 - Final machine-checkable audit: `evidence/final-self-check.json`. This validates artifacts, not semantic truth or a final grade.
 - Final decision memo: `evidence/final-memo.md`; human/model comparison: `evidence/golden_evaluation.json`.
 - Download input sample, grading artifacts, recovery evidence, costs and final outputs from the [final-analysis release](https://github.com/gracecao1997/spotify-review-insights/releases/tag/final-analysis).
+
+## Submission and reproducibility
+
+Submit this repository URL through the course's bCourses assignment portal: **https://github.com/gracecao1997/spotify-review-insights**. Portal submission has not been performed by this program.
+
+Read the [reviewed decision memo](DECISION_MEMO.md) for the recommendation, alternatives and limitations. The untouched model-generated memo and its logged handoff are separate. `evidence/source_trace.json` follows one original review through classification, issue membership, ranking and memo claim IDs.
+
+For a new model run, extract the instructor-provided `spotify-insight-dataset.zip` into `data/` with `python3 -m zipfile -e /path/to/spotify-insight-dataset.zip data`, then run `python3 prepare_scope.py`. The raw ZIP is not needed for offline cost replay. The release contains the exact selected analysis CSV and grading artifacts for inspection.
+
+The final call log includes 11 failed requests with unavailable token counts; the original course audit remains `review_required` for those 22 token-field flags alone. All coverage, source fidelity, provenance and ranking checks have no flags. Do not interpret this as an unqualified audit pass or a grade. See `evidence/audit-disclosure.json`.
+
+The final 1,000-record independent verification sample contains 16 topic, 11 intent and 25 severity disagreements. Continuous sentiment differences and needs-review differences are retained in the detailed report; same-model agreement is not independent proof of correctness.
+
+`evidence/final_run.json` records the final resumed segment's measured classification time, not uninterrupted end-to-end time. The work was paused by network failures; interruption and per-call timing records are retained. Local model compute costs are unmeasured.

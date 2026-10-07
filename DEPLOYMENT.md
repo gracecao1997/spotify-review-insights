@@ -2,7 +2,7 @@
 
 Public URL: https://spotify-review-insights-three.vercel.app
 
-The initial published snapshot contains 500 classified reviews and is labeled as a development checkpoint. It is not the final submission analysis. Anonymous HTTP access and interactive source-review retrieval were verified.
+The final published snapshot contains 100,000 classified reviews and 13 empty quarantines. The original full source was profiled separately. Anonymous HTTP access retrieves the final saved database without model calls.
 
 The Vercel project is `spotify-review-insights`, ID `prj_tgL8KSoKMBQrwer2fmtHv2LbQm5d`, on the existing `knit3` Hobby team. The CLI was used because the connected MCP credential could not access that team. No paid hosting plan was purchased.
 

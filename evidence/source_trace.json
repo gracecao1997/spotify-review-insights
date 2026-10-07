@@ -1,0 +1,56 @@
+{
+  "review": {
+    "entities": [
+      "songs"
+    ],
+    "evidence_quote": "I lost all my liked songs for no reason",
+    "intent": "complaint",
+    "label_config": "2ee759392ec7b1a095fda896b2c13410ba8a9e9a2c33a4a3525827efd8bed2f2",
+    "needs_review": true,
+    "review_id": "1b72a43a-0608-4b73-991a-b9fbe84a5ebc",
+    "sentiment": -0.855,
+    "severity": 5,
+    "source": {
+      "app_version": "8.8.80.599",
+      "review_id": "1b72a43a-0608-4b73-991a-b9fbe84a5ebc",
+      "review_likes": "0",
+      "review_rating": "1",
+      "review_text": "I lost all my liked songs for no reason",
+      "review_timestamp": "2023-11-06 06:46:24"
+    },
+    "source_sha256": "28e256c12ff6106b093e88eecf3085a629f704b16ef17edf3c0444e140ef61a2",
+    "status": "completed",
+    "topic": "usability"
+  },
+  "issue_id": "issue-usability",
+  "calculated_issue_metrics": {
+    "rank": "1",
+    "issue_id": "issue-usability",
+    "complaint_count": "12350",
+    "severity_sum": "30007",
+    "mean_severity": "2.429717",
+    "priority_score": "30007"
+  },
+  "memo_claims": [
+    {
+      "claim_id": "C001",
+      "issue_id": "issue-usability",
+      "metric": "complaint_count",
+      "value": "12350"
+    },
+    {
+      "claim_id": "C002",
+      "issue_id": "issue-usability",
+      "metric": "priority_score",
+      "value": "30007"
+    },
+    {
+      "claim_id": "C003",
+      "issue_id": "issue-usability",
+      "metric": "mean_severity",
+      "value": "2.429717"
+    }
+  ],
+  "memo_reference": "evidence/final-memo.md",
+  "note": "This example is traceable evidence, not an estimate of the prevalence of lost liked songs."
+}
