@@ -56,3 +56,9 @@ The checkpoint projection with a 20% enrichment margin, verification allowance a
 ## Honest handling of unavailable usage in the supplied checker
 
 The 10k audit reports `review_required` solely because six failed network/server calls have unavailable input/output token counts (12 `invalid_usage` field flags). All 10,000 source records, hashes, cached provenance, memberships and ranking arithmetic are valid. The original checker output is unchanged. `audit_acceptance.py` permits publication only when these are the only flags and every missing usage field belongs to a logged failed network/HTTP-5xx request with unknown cost. It rejects missing usage on successful calls and all unrelated audit flags. `evidence/jev-10000-audit-disclosure.json` lists the exact affected requests. Their full conservative reservations remain in the project ledger; no zero-token or zero-cost claim was invented.
+
+## Final-run transport recovery
+
+The first final-scope run stopped with 44,370 completed records, 13 legitimate empty quarantines, one transport-failed quarantine and 55,629 pending records. Known API cost was $1.247624448 and unknown-charge reservations were $0.15138816. HTTPS connectivity was confirmed before reopening only the failed transport record and resuming.
+
+`continue_assignment.py` now runs a finite recovery sequence: at most two additional recovery rounds after the initial run, each following a 45-second backoff. A recovery is permitted only when the current run produced a new checkpoint, the circuit breaker fired, and every failed call in that run was a network/HTTP-5xx failure. Invalid semantic output, missing setup, budget stops and downstream writer failures do not trigger automatic recovery. Every round retains a checkpoint snapshot, uses the same result cache and budget ledger, and preserves all prior attempts and unknown reservations. Final audit and publication run only after the pipeline completes.
