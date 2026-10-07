@@ -1,0 +1,218 @@
+{
+  "measured": {
+    "cold_seconds": 180.65627112495713,
+    "warm_seconds": 0.033445707987993956,
+    "input_count": 100,
+    "completed": 100,
+    "failed": 0,
+    "warm_new_enrichment_calls": 0,
+    "api_usd": 0.0,
+    "local_compute_usd": null,
+    "cost_per_1000_inputs_usd": 0.0,
+    "cost_per_completed_record_usd": 0.0,
+    "records_per_second": 0.5535373855404752,
+    "stage_breakdown": {
+      "enrich": {
+        "attempts": 10,
+        "input_tokens": 8076,
+        "output_tokens": 3474,
+        "api_usd": 0.0,
+        "call_seconds": 125.11396495613735,
+        "unknown_usage_calls": 0
+      },
+      "verify": {
+        "attempts": 1,
+        "input_tokens": 898,
+        "output_tokens": 364,
+        "api_usd": 0.0,
+        "call_seconds": 19.46863645792473,
+        "unknown_usage_calls": 0
+      },
+      "group": {
+        "attempts": 1,
+        "input_tokens": 1893,
+        "output_tokens": 145,
+        "api_usd": 0.0,
+        "call_seconds": 12.571927499957383,
+        "unknown_usage_calls": 0
+      },
+      "memo": {
+        "attempts": 1,
+        "input_tokens": 2265,
+        "output_tokens": 368,
+        "api_usd": 0.0,
+        "call_seconds": 23.375276042032056,
+        "unknown_usage_calls": 0
+      }
+    }
+  },
+  "projected": {
+    "rows": 10000,
+    "nonempty": 10000,
+    "unique_texts": 10000,
+    "scenarios": {
+      "base_exact_reuse": {
+        "first_pass_distinct_texts": 10000,
+        "verification_reviews": 1000,
+        "api_usd": 0.0,
+        "hours": 4.026203836421417,
+        "assumption": "One worker; observed retries included; conservative variable work/time ×1.5; fallback disabled; fixed overhead once."
+      },
+      "conservative_exact_reuse": {
+        "first_pass_distinct_texts": 10000,
+        "verification_reviews": 1000,
+        "api_usd": 0.0,
+        "hours": 6.034295522727835,
+        "assumption": "One worker; observed retries included; conservative variable work/time ×1.5; fallback disabled; fixed overhead once."
+      },
+      "no_reuse": {
+        "first_pass_distinct_texts": 10000,
+        "verification_reviews": 1000,
+        "api_usd": 0.0,
+        "hours": 4.026203836421417,
+        "assumption": "One worker; observed retries included; conservative variable work/time ×1.5; fallback disabled; fixed overhead once."
+      }
+    }
+  },
+  "budget_api_usd": 0,
+  "would_exceed_api_budget": false,
+  "usage": [
+    {
+      "request_id": "86ce5e26-a95b-412e-905b-7f606e150719",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 706,
+      "cached_input_tokens": 0,
+      "output_tokens": 364,
+      "api_usd": 0.0,
+      "wall_seconds": 11.361016625072807
+    },
+    {
+      "request_id": "aa1a2e42-7126-4d3f-b8b2-2509230128d4",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 716,
+      "cached_input_tokens": 0,
+      "output_tokens": 365,
+      "api_usd": 0.0,
+      "wall_seconds": 12.789261540980078
+    },
+    {
+      "request_id": "0caa7991-26c8-4b90-86ec-4062f94bca51",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 829,
+      "cached_input_tokens": 0,
+      "output_tokens": 305,
+      "api_usd": 0.0,
+      "wall_seconds": 11.056296332972124
+    },
+    {
+      "request_id": "7319ab1b-fa67-4961-a190-ea7a898ed66d",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 888,
+      "cached_input_tokens": 0,
+      "output_tokens": 374,
+      "api_usd": 0.0,
+      "wall_seconds": 12.99065741605591
+    },
+    {
+      "request_id": "2e7a80ce-819c-4dd8-bf2e-5a9bafd53d3c",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 889,
+      "cached_input_tokens": 0,
+      "output_tokens": 376,
+      "api_usd": 0.0,
+      "wall_seconds": 12.924822959001176
+    },
+    {
+      "request_id": "94caa3c9-536c-406f-b669-2db0405fecc9",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 764,
+      "cached_input_tokens": 0,
+      "output_tokens": 312,
+      "api_usd": 0.0,
+      "wall_seconds": 11.36339308298193
+    },
+    {
+      "request_id": "9810bd23-d5cb-4158-a09b-de2dab32b4ec",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 854,
+      "cached_input_tokens": 0,
+      "output_tokens": 324,
+      "api_usd": 0.0,
+      "wall_seconds": 12.07692683301866
+    },
+    {
+      "request_id": "c77ffa7b-1ced-4ade-91db-cc678aac4938",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 704,
+      "cached_input_tokens": 0,
+      "output_tokens": 368,
+      "api_usd": 0.0,
+      "wall_seconds": 13.052277541020885
+    },
+    {
+      "request_id": "b3081aa2-16e6-4370-9ed6-24f479180904",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 851,
+      "cached_input_tokens": 0,
+      "output_tokens": 305,
+      "api_usd": 0.0,
+      "wall_seconds": 11.868267250014469
+    },
+    {
+      "request_id": "bbd9bcc4-71e6-4d1a-9651-b4357da1d22e",
+      "role": "enrich",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 875,
+      "cached_input_tokens": 0,
+      "output_tokens": 381,
+      "api_usd": 0.0,
+      "wall_seconds": 15.631045375019312
+    },
+    {
+      "request_id": "4d910e22-12a6-4bdb-a2f8-703a6acb06ce",
+      "role": "verify",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 898,
+      "cached_input_tokens": 0,
+      "output_tokens": 364,
+      "api_usd": 0.0,
+      "wall_seconds": 19.46863645792473
+    },
+    {
+      "request_id": "916ea721-fd4c-4449-ac73-51a9964b977e",
+      "role": "group",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 1893,
+      "cached_input_tokens": 0,
+      "output_tokens": 145,
+      "api_usd": 0.0,
+      "wall_seconds": 12.571927499957383
+    },
+    {
+      "request_id": "1ba17f57-e8dc-42b7-b601-a3a74f1ad1c0",
+      "role": "memo",
+      "model": "gemma3n:e4b-it-q4_K_M",
+      "input_tokens": 2265,
+      "cached_input_tokens": 0,
+      "output_tokens": 368,
+      "api_usd": 0.0,
+      "wall_seconds": 23.375276042032056
+    }
+  ],
+  "limitations": [
+    "Initial estimates from only 100 reviews; refresh at 500 and 10000.",
+    "Local hardware/electricity cost unmeasured, not zero.",
+    "Summed call durations are used only for this single-worker setup.",
+    "Unknown token usage stays unknown; actual local API charge is zero.",
+    "Model agreement is not human-label accuracy."
+  ]
+}

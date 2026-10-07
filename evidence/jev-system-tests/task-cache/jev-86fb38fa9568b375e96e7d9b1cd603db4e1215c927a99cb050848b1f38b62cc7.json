@@ -1,0 +1,71 @@
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "intent": {
+      "type": "choice",
+      "choice": "complaint",
+      "confidence": 1.0,
+      "probabilities": {
+        "complaint": 1.0,
+        "unclear": 0.0,
+        "cancellation": 0.0,
+        "praise": 0.0,
+        "request": 0.0
+      }
+    },
+    "needs_review": {
+      "type": "noul",
+      "noul": 0.14
+    },
+    "sentiment": {
+      "type": "score",
+      "score": 0.05,
+      "confidence": 0.96,
+      "legend": {
+        "0": "Strongly negative",
+        "1": "Negative",
+        "2": "Neutral, balanced mixed, or unclear",
+        "3": "Positive",
+        "4": "Strongly positive"
+      },
+      "probabilities": {
+        "0": 0.96,
+        "1": 0.04,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      }
+    },
+    "severity": {
+      "type": "choice",
+      "choice": "4",
+      "confidence": 0.99,
+      "probabilities": {
+        "2": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "1": 0.0,
+        "4": 1.0
+      }
+    },
+    "topic": {
+      "type": "choice",
+      "choice": "playback",
+      "confidence": 1.0,
+      "probabilities": {
+        "catalog": 0.0,
+        "other": 0.0,
+        "support": 0.0,
+        "usability": 0.0,
+        "billing": 0.0,
+        "access": 0.0,
+        "playback": 1.0,
+        "downloads": 0.0
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 1361,
+    "output_tokens": 213
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "phase": "cold",
+  "wall_seconds": 180.65627112495713,
+  "stages": {
+    "wall_seconds": 55.43921791703906,
+    "timings": {
+      "verify": [
+        {
+          "cache_hit": false,
+          "wall_seconds": 19.473154959036037,
+          "attempts": 1
+        }
+      ],
+      "rank": {
+        "wall_seconds": 0.006467249942943454,
+        "model_calls": 0
+      },
+      "group": {
+        "cache_hit": false,
+        "wall_seconds": 12.575438083033077,
+        "attempts": 1
+      },
+      "memo": {
+        "cache_hit": false,
+        "wall_seconds": 23.37732887500897,
+        "attempts": 1
+      }
+    },
+    "completed": 100,
+    "issues": 8
+  },
+  "api_cost_usd": 0,
+  "local_compute_cost_usd": null,
+  "workers": 1,
+  "verification_fraction": 0.1,
+  "api_budget_usd": 0,
+  "fallback_fraction": 0,
+  "complete_pipeline": true
+}

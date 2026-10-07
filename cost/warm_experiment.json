@@ -1,0 +1,39 @@
+{
+  "phase": "warm",
+  "wall_seconds": 0.033445707987993956,
+  "stages": {
+    "wall_seconds": 0.00264829199295491,
+    "timings": {
+      "verify": [
+        {
+          "cache_hit": true,
+          "wall_seconds": 0,
+          "attempts": 0
+        }
+      ],
+      "rank": {
+        "wall_seconds": 0.0007500411011278629,
+        "model_calls": 0
+      },
+      "group": {
+        "cache_hit": true,
+        "wall_seconds": 0,
+        "attempts": 0
+      },
+      "memo": {
+        "cache_hit": true,
+        "wall_seconds": 0,
+        "attempts": 0
+      }
+    },
+    "completed": 100,
+    "issues": 8
+  },
+  "api_cost_usd": 0,
+  "local_compute_cost_usd": null,
+  "workers": 1,
+  "verification_fraction": 0.1,
+  "api_budget_usd": 0,
+  "fallback_fraction": 0,
+  "complete_pipeline": true
+}

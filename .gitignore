@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+data/
+runs/
+*.sqlite*
+*.log
+.venv/
+.vercel/
+release/

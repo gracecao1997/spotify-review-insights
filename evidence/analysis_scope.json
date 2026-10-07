@@ -1,0 +1,17 @@
+{
+  "approval": "User reports professor permits 100k; communicated in task on 2026-10-06.",
+  "source_count": 660622,
+  "source_sha256": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6",
+  "analysis_file": "analysis_100000.csv",
+  "analysis_sha256": "b87ca3b10e8ff88d3a4a203f69ae9a9dc8c36fa4ed67ea8e1e3dda4363808842",
+  "analysis_count": 100013,
+  "nonempty_to_classify": 100000,
+  "empty_text_quarantines": 13,
+  "distinct_nonempty_texts": 78099,
+  "method": "Lowest 100000 SHA-256(seed + colon + review_id) among all nonempty source rows, plus every empty source row. Output retains source order.",
+  "seed": "berkeley-fall-2026-assignment-5-v1",
+  "includes_all_fixed_development_and_golden_ids": true,
+  "golden_answer_labels_included": false,
+  "api_budget_usd": 10,
+  "operational_stop_usd": 9
+}

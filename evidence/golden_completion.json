@@ -1,0 +1,8 @@
+{
+  "saved_count": 50,
+  "valid_count": 50,
+  "needs_review_count": 7,
+  "sha256": "de26c72a3bff73f2cda415b653e9d02ea72361540f6b98f83f137332872b7686",
+  "backup": "evidence/human-label-backups/20261006T234504Z/golden_50_human.csv",
+  "checked_at_utc": "20261006T234504Z"
+}

@@ -1,0 +1,9 @@
+*
+!Dockerfile
+!core.py
+!stages.py
+!dashboard.py
+!web/
+!web/dashboard.html
+!deployment/
+!deployment/dashboard.sqlite

@@ -1,0 +1,36 @@
+{
+  "source": "cost_100.csv development only; no golden labels used",
+  "inspected_by": "coding assistant, not a human golden label",
+  "examples": [
+    {
+      "review_id": "b92a7381-b5cd-4c77-9176-e5c4b4818c8a",
+      "text": "You deserve 0 star",
+      "actual": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 5
+      },
+      "inspection": "Generic criticism does not support severity 5; rubric points to severity 2."
+    },
+    {
+      "review_id": "618d1dbb-0186-4537-923a-7b4dabf19afb",
+      "text": "Please stop with the recommendations! I use the premium family sub and I want to listen to my playlist without your recommendation adds. I am not interested in new music based on my preferences. If I wanted these songs I'd use a random playlist not not make my own! I'll start using Amazon music or apple if you don't.",
+      "actual": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 4
+      },
+      "inspection": "Explicit threat to switch to Amazon or Apple should trigger cancellation precedence."
+    },
+    {
+      "review_id": "06a45bd5-3ed9-43af-b7f2-8b9487e2ffff",
+      "text": "Worst app",
+      "actual": {
+        "topic": "playback",
+        "intent": "complaint",
+        "severity": 4
+      },
+      "inspection": "Worst app identifies neither playback nor a blocked core task; other/complaint/severity 2 is supported."
+    }
+  ]
+}

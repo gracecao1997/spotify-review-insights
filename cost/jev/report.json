@@ -1,0 +1,91 @@
+{
+  "measured": {
+    "cold": {
+      "wall_seconds": 53.951103958068416,
+      "by_stage": {
+        "enrich": {
+          "calls": 100,
+          "input_tokens": 122787,
+          "output_tokens": 21250,
+          "api_usd": 0.005157054000000001,
+          "unknown_usage_calls": 0,
+          "call_wall_seconds": 15.95735475490801
+        },
+        "verify": {
+          "calls": 10,
+          "input_tokens": 13645,
+          "output_tokens": 2122,
+          "api_usd": 0.0005730900000000001,
+          "unknown_usage_calls": 0,
+          "call_wall_seconds": 1.9963842498837039
+        },
+        "group": {
+          "calls": 1,
+          "input_tokens": 1780,
+          "output_tokens": 113,
+          "api_usd": 0.0,
+          "unknown_usage_calls": 0,
+          "call_wall_seconds": 19.087024083943106
+        },
+        "memo": {
+          "calls": 1,
+          "input_tokens": 2154,
+          "output_tokens": 318,
+          "api_usd": 0.0,
+          "unknown_usage_calls": 0,
+          "call_wall_seconds": 16.496917375014164
+        }
+      },
+      "known_api_usd": 0.005730144000000001,
+      "new_enrichment_calls": 100
+    },
+    "warm": {
+      "wall_seconds": 0.14944562502205372,
+      "by_stage": {},
+      "known_api_usd": 0,
+      "new_enrichment_calls": 0
+    }
+  },
+  "pilot_input_count": 100,
+  "pilot_completed": 100,
+  "pilot_distinct_texts": 100,
+  "projection_nonempty": 100000,
+  "projection_distinct": 78099,
+  "verification_fraction": 0.01,
+  "projections": {
+    "base_exact_cache": {
+      "projected_api_usd": 4.084916603460001,
+      "projected_seconds_one_worker": 12911.281291003737,
+      "enrichment_distinct_texts": 78099,
+      "verification_records": 1000,
+      "additional_attempt_multiplier": 1,
+      "modeled_not_measured": true
+    },
+    "conservative_20_percent_extra": {
+      "projected_api_usd": 4.9018999241520005,
+      "projected_seconds_one_worker": 15485.653604359168,
+      "enrichment_distinct_texts": 78099,
+      "verification_records": 1000,
+      "additional_attempt_multiplier": 1.2,
+      "modeled_not_measured": true
+    },
+    "no_result_reuse": {
+      "projected_api_usd": 5.214363000000001,
+      "projected_seconds_one_worker": 16464.903732114588,
+      "enrichment_distinct_texts": 100000,
+      "verification_records": 1000,
+      "additional_attempt_multiplier": 1,
+      "modeled_not_measured": true
+    }
+  },
+  "unknown_usage_calls": 0,
+  "local_compute_usd": null,
+  "scale_ready_on_cost_only": true,
+  "limitations": [
+    "Measured pilot retries are included; conservative scenario adds another 20%.",
+    "Runtime extrapolates one worker and can vary with server load; no measured parallel speedup is claimed.",
+    "Estimates describe the target run, excluding sunk development spend. Check the shared budget ledger before scaling.",
+    "Unknown usage prevents a complete cost result. Local hardware/energy costs are unmeasured.",
+    "Quality and checkpoint completion must also be checked before scaling."
+  ]
+}

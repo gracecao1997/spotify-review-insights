@@ -1,0 +1,113 @@
+{
+  "phase": "cold",
+  "wall_seconds": 53.951103958068416,
+  "stages": {
+    "wall_seconds": 37.62907374999486,
+    "timings": {
+      "verify": [
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.15032287500798702
+        },
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.20200787496287376
+        },
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.3077682909788564
+        },
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.15312833397183567
+        },
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.15566550008952618
+        },
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.17175691598095
+        },
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.11611404200084507
+        },
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.23393591702915728
+        },
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.29557858291082084
+        },
+        {
+          "cache_hit": false,
+          "attempts": 1,
+          "wall_seconds": 0.2232225830666721
+        }
+      ],
+      "rank": {
+        "wall_seconds": 0.003825958934612572,
+        "model_calls": 0
+      },
+      "group": {
+        "cache_hit": false,
+        "wall_seconds": 19.09193979203701,
+        "attempts": 1
+      },
+      "memo": {
+        "cache_hit": false,
+        "wall_seconds": 16.50182549993042,
+        "attempts": 1
+      }
+    },
+    "completed": 100,
+    "issues": 8
+  },
+  "workers": 1,
+  "verification_fraction": 0.1,
+  "verification_minimum": 10,
+  "fallback_fraction": 0,
+  "complete_pipeline": true,
+  "input": "/Users/GRACE/Documents/ChatGPT/Intro to Agentic AI Class/spotify-pipeline/data/cost_100.csv",
+  "classification": {
+    "run_id": "2bfba3d3-4964-43fb-9677-127d6bc5bca6",
+    "label_config": "2ee759392ec7b1a095fda896b2c13410ba8a9e9a2c33a4a3525827efd8bed2f2",
+    "input_count": 100,
+    "completed": 100,
+    "quarantined": 0,
+    "pending": 0,
+    "new_enrichment_calls": 100,
+    "cache_or_saved_hits": 0,
+    "workers": 1,
+    "wall_seconds": 16.225845582899638,
+    "interrupted": false,
+    "stop_reasons": [],
+    "project_budget": {
+      "known_api_usd": 0.005157054,
+      "reserved_or_unknown_usd": 0.0,
+      "authorized_cap_usd": 10,
+      "dispatch_stop_usd": 9,
+      "states": {
+        "settled": 100
+      }
+    }
+  },
+  "text_model": {
+    "model": "gemma3n:e4b-it-q4_K_M",
+    "digest": "15cb39fd9394fd2549f6df9081cfc84dd134ecf2c9c5be911e5629920489ac32",
+    "temperature": 0,
+    "num_ctx": 8192,
+    "num_predict": 2200
+  }
+}

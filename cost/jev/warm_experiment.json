@@ -1,0 +1,113 @@
+{
+  "phase": "warm",
+  "wall_seconds": 0.14944562502205372,
+  "stages": {
+    "wall_seconds": 0.008921166998334229,
+    "timings": {
+      "verify": [
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        },
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        },
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        },
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        },
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        },
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        },
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        },
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        },
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        },
+        {
+          "cache_hit": true,
+          "attempts": 0,
+          "wall_seconds": 0
+        }
+      ],
+      "rank": {
+        "wall_seconds": 0.0015139160677790642,
+        "model_calls": 0
+      },
+      "group": {
+        "cache_hit": true,
+        "wall_seconds": 0,
+        "attempts": 0
+      },
+      "memo": {
+        "cache_hit": true,
+        "wall_seconds": 0,
+        "attempts": 0
+      }
+    },
+    "completed": 100,
+    "issues": 8
+  },
+  "workers": 1,
+  "verification_fraction": 0.1,
+  "verification_minimum": 10,
+  "fallback_fraction": 0,
+  "complete_pipeline": true,
+  "input": "/Users/GRACE/Documents/ChatGPT/Intro to Agentic AI Class/spotify-pipeline/data/cost_100.csv",
+  "classification": {
+    "run_id": "fe9a75bb-75e2-4a85-ad58-ea063ad0db7e",
+    "label_config": "2ee759392ec7b1a095fda896b2c13410ba8a9e9a2c33a4a3525827efd8bed2f2",
+    "input_count": 100,
+    "completed": 100,
+    "quarantined": 0,
+    "pending": 0,
+    "new_enrichment_calls": 0,
+    "cache_or_saved_hits": 100,
+    "workers": 1,
+    "wall_seconds": 0.02739958302117884,
+    "interrupted": false,
+    "stop_reasons": [],
+    "project_budget": {
+      "known_api_usd": 0.005730144,
+      "reserved_or_unknown_usd": 0.0,
+      "authorized_cap_usd": 10,
+      "dispatch_stop_usd": 9,
+      "states": {
+        "settled": 110
+      }
+    }
+  },
+  "text_model": {
+    "model": "gemma3n:e4b-it-q4_K_M",
+    "digest": "15cb39fd9394fd2549f6df9081cfc84dd134ecf2c9c5be911e5629920489ac32",
+    "temperature": 0,
+    "num_ctx": 8192,
+    "num_predict": 2200
+  }
+}
