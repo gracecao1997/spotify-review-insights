@@ -33,7 +33,15 @@ def execute(args):
     with closing(connect(args.db)) as db,db:
         for r in records:
             old=db.execute('SELECT status FROM results WHERE id=? AND config=?',(r['review_id'],config)).fetchone()
-            if old:hits+=1;continue
+            if old:
+                if getattr(args,'retry_transport_quarantine',False) and old['status']=='quarantined':
+                    prior=json.loads(db.execute('SELECT payload FROM results WHERE id=? AND config=?',(r['review_id'],config)).fetchone()['payload'])
+                    reason=prior.get('reason','')
+                    if 'network error' in reason or 'HTTP 5' in reason:
+                        write_json(out/'reopened-transport'/f"{r['review_id']}.json",prior)
+                        db.execute('DELETE FROM results WHERE id=? AND config=?',(r['review_id'],config))
+                    else:hits+=1;continue
+                else:hits+=1;continue
             if not r['review_text'].strip():
                 db.execute('INSERT INTO results VALUES(?,?,?,?)',(r['review_id'],config,'quarantined',canonical({'reason':'empty_review_text'})))
                 continue
@@ -128,7 +136,7 @@ def execute(args):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--execute-paid',action='store_true',required=True)
     p.add_argument('--input',type=Path,required=True);p.add_argument('--db',default='runs/jev/state.sqlite');p.add_argument('--out',default='runs/jev/output')
-    p.add_argument('--workers',type=int,default=1);p.add_argument('--limit',type=int);p.add_argument('--max-seconds',type=float,default=0)
+    p.add_argument('--retry-transport-quarantine',action='store_true');p.add_argument('--workers',type=int,default=1);p.add_argument('--limit',type=int);p.add_argument('--max-seconds',type=float,default=0)
     p.add_argument('--phase',choices=['initial','resume'],default='initial');args=p.parse_args()
     if not 1<=args.workers<=2:p.error('Start with one worker; at most two until a measured capacity check supports more')
     lock_path=ROOT/'runs/jev-run.lock';lock_path.parent.mkdir(parents=True,exist_ok=True)

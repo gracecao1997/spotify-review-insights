@@ -38,3 +38,9 @@ The assignment's `COST_CALCULATOR.md` explicitly recommends deterministic extrac
 - Added shared durable budget ledger, explicit paid classifier, independent blind verifier, cached mixed-provider six-stage orchestration, and offline Jev calculator.
 - Added synthetic transport tests for integer severity, provider mismatch, timeout reservations, concurrent budget admission, one retry, exact duplicate reuse, warm zero-call behavior, and editable cost arithmetic. These tests do not constitute real Jev inference or billing evidence.
 - Jev execution awaits a locally configured API key. Final classification, golden evaluation, Jev cold/warm measurements, final memo and public deployment remain outstanding.
+
+## Transport interruption and explicit recovery
+
+The first Jev 10,000-review expansion stopped after 8,912 completed records, one network-failed quarantine and 1,087 pending records. Three consecutive transport failures triggered the circuit breaker; saved results were retained. HTTPS connectivity was subsequently confirmed without a paid request. The interrupted output folder was preserved before resume.
+
+Added an explicit `--retry-transport-quarantine` recovery option that reopens only quarantines caused by network errors or HTTP 5xx responses, preserving their prior payloads and every attempted call. Invalid model-output quarantines and empty rows are not reopened by this option. Unknown charges remain reserved in the shared budget ledger. Synthetic recovery tests verify preservation of attempts/reservations and completion on a later successful request. The resumed checkpoint reuses all completed classifications.

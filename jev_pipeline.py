@@ -23,7 +23,7 @@ def run(args):
     info=model_identity(args.model)
     text_settings={'model':args.model,'digest':info['digest'],'temperature':0,'num_ctx':8192,'num_predict':2200}
     summary=execute(SimpleNamespace(input=args.input,db=db,out=out,limit=None,workers=1 if args.pilot else args.workers,
-                    max_seconds=args.max_seconds,phase='resume' if args.warm or args.resume else 'initial'))
+                    max_seconds=args.max_seconds,retry_transport_quarantine=getattr(args,'retry_transport_quarantine',False),phase='resume' if args.warm or args.resume else 'initial'))
     if summary['pending'] or summary['interrupted'] or summary['stop_reasons']:
         raise RuntimeError('Classification paused/incomplete; checkpoint saved. Resolve the stop reason before resuming.')
     records=load_records(out/'records.jsonl')
@@ -50,7 +50,7 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--execute-paid',action='store_true',required=True)
     p.add_argument('--input',type=Path);p.add_argument('--root',required=True);p.add_argument('--pilot',action='store_true')
     p.add_argument('--warm',action='store_true');p.add_argument('--resume',action='store_true')
-    p.add_argument('--workers',type=int,choices=[1,2],default=1);p.add_argument('--max-seconds',type=float,default=0)
+    p.add_argument('--retry-transport-quarantine',action='store_true');p.add_argument('--workers',type=int,choices=[1,2],default=1);p.add_argument('--max-seconds',type=float,default=0)
     p.add_argument('--model',default='gemma3n:e4b-it-q4_K_M');args=p.parse_args()
     if not args.pilot and not args.input:p.error('--input is required outside the fixed pilot')
     lock=ROOT/'runs/jev-run.lock';lock.parent.mkdir(parents=True,exist_ok=True)

@@ -106,3 +106,26 @@ class CalculatorTests(unittest.TestCase):
             self.assertEqual(b['measured'],c['measured'])
             self.assertEqual(b['measured']['warm']['known_api_usd'],0)
             self.assertEqual(b['measured']['warm']['new_enrichment_calls'],0)
+
+class TransportRecoveryTests(unittest.TestCase):
+    def test_reopen_network_failure_preserves_attempts_and_reservations(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);inp=root/'source.csv'
+            with inp.open('w',newline='') as f:
+                w=csv.DictWriter(f,fieldnames=FIELDS);w.writeheader();w.writerow(dict(zip(FIELDS,['a','Cannot log in','1','0','','2023'])))
+            n=[0]
+            def transport(payload):
+                n[0]+=1
+                if n[0]<=2:raise RuntimeError('TypeSafe network error; usage/charge unknown')
+                return response(),'synthetic'
+            client=JevClient(root/'budget.db',transport=transport)
+            args=SimpleNamespace(input=inp,db=root/'state.db',out=root/'failed',limit=None,workers=1,max_seconds=0,phase='initial')
+            with patch.object(jev_run,'load_key',return_value='test-only'),patch.object(jev_run,'JevClient',return_value=client),contextlib.redirect_stdout(io.StringIO()):
+                first=jev_run.execute(args)
+                args.out=root/'recovered';args.phase='resume';args.retry_transport_quarantine=True
+                recovered=jev_run.execute(args)
+            self.assertEqual(first['quarantined'],1);self.assertEqual(recovered['completed'],1)
+            self.assertEqual(recovered['new_enrichment_calls'],1)
+            self.assertTrue((root/'recovered/reopened-transport/a.json').exists())
+            self.assertEqual(len((root/'recovered/calls.jsonl').read_text().splitlines()),3)
+            self.assertEqual(client.ledger.summary()['states']['unknown'],2)
